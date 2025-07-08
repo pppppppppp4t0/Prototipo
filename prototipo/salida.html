@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Salida</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>RFF</h1>
+    <h2 id="despedida"></h2>
+    <p>Jornada en curso</p>
+    <p>Ubicación: [ detectada ✔ ]</p>
+    <p>Hora: <span id="hora"></span></p>
+    <button onclick="marcarSalida()">Marcar Salida</button>
+    <p>Estado Actual: [ Entrada registrada – 08:03 AM ]</p>
+  </div>
+
+  <script>
+    const nombre = localStorage.getItem("nombreUsuario") || "Usuario";
+    document.getElementById("despedida").innerText = "Hasta Luego " + nombre;
+
+    const ahora = new Date();
+    document.getElementById("hora").innerText = ahora.toLocaleTimeString();
+
+    function marcarSalida() {
+      localStorage.setItem("horaSalida", ahora.getTime());
+      window.location.href = "fin.html";
+    }
+  </script>
+</body>
+</html>

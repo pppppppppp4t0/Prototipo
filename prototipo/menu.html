@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Menú Principal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>RFF</h1>
+    <h2 id="saludo"></h2>   
+    <p>Selecciona una acción:</p>
+
+    <div class="menu-buttons">
+      <button onclick="window.location.href='entrada.html'">Marcar Entrada</button>
+      <button onclick="window.location.href='salida.html'">Marcar Salida</button>
+    </div>
+
+    <p class="estado">Estado actual: Jornada no iniciada</p>
+  </div>
+  <script>
+        const nombre = localStorage.getItem("nombreUsuario") || "Usuario";
+        document.getElementById("saludo").innerText = "Bienvenid@ " + nombre;
+   </script>
+
+</body>
+</html>

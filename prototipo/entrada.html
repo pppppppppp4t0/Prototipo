@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Entrada</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>RFF</h1>
+    <h2 id="bienvenida"></h2>
+
+    <p>Ubicación: detectada ✔</p>
+    <p>Hora: <span id="hora"></span></p>
+    <button onclick="marcarEntrada()">Marcar Entrada</button>
+    <p>[ Estado Actual: No registrado hoy ]</p>
+  </div>
+
+  <script>
+    const nombre = localStorage.getItem("nombreUsuario") || "Usuario";
+    document.getElementById("bienvenida").innerText = "Bienvenid@ " + nombre;
+
+    const ahora = new Date();
+    document.getElementById("hora").innerText = ahora.toLocaleTimeString();
+
+    function marcarEntrada() {
+      // Guarda la hora actual en milisegundos
+      localStorage.setItem("horaEntrada", ahora.getTime());
+      window.location.href = "salida.html";
+    }
+  </script>
+</body>
+</html>

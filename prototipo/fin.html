@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fin de Jornada</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>RFF</h1>
+    <h2 id="mensaje"></h2>
+    <p id="resumen"></p>
+    <button onclick="volverInicio()">Volver al Menú</button>
+  </div>
+
+  <script>
+    const nombre = localStorage.getItem("nombreUsuario") || "Usuario";
+    const entrada = parseInt(localStorage.getItem("horaEntrada"), 10);
+    const salida = parseInt(localStorage.getItem("horaSalida"), 10);
+
+    if (!entrada || !salida) {
+      document.getElementById("mensaje").innerText = "¡Hola, " + nombre + "!";
+      document.getElementById("resumen").innerText = "No se pudo calcular el tiempo trabajado.";
+    } else {
+      const duracionMs = salida - entrada;
+      const totalMin = Math.floor(duracionMs / 1000 / 60);
+      const horas = Math.floor(totalMin / 60);
+      const minutos = totalMin % 60;
+
+      document.getElementById("mensaje").innerText = "¡Buen trabajo, " + nombre + "!";
+      document.getElementById("resumen").innerText =
+        `Tu jornada ha terminado. Trabajaste ${horas}h ${minutos}min.`;
+    }
+
+    function volverInicio() {
+      localStorage.removeItem("horaEntrada");
+      localStorage.removeItem("horaSalida");
+      window.location.href = "menu.html";
+    }
+  </script>
+</body>
+</html>
